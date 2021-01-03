@@ -20,7 +20,8 @@ public class JsonGenerator {
         char doisPontos = ':';
         char virgula = ',';
 
-        Field[] atributos = Pessoa.class.getDeclaredFields();
+        Class<Pessoa> pessoaClass = Pessoa.class;
+        Field[] atributos = pessoaClass.getDeclaredFields();
         StringBuilder json = new StringBuilder();
 
         json.append(chaveAberta);
@@ -31,23 +32,21 @@ public class JsonGenerator {
                 json.append(aspas).append(atributos[index].getName())
                         .append(aspas)
                         .append(doisPontos).append(aspas).
-                        append(Pessoa.class.getDeclaredMethod("getNome").invoke(pessoa)).append(aspas).append(virgula);
+                        append(pessoaClass.getDeclaredMethod("getNome").invoke(pessoa)).append(aspas).append(virgula);
             }
 
             if (atributos[index].getName().equals("idade")) {
                 json.append(aspas).append(atributos[index].getName())
                         .append(aspas)
-                        .append(doisPontos).append(Pessoa.class.getDeclaredMethod("getIdade").invoke(pessoa)).append(virgula);
+                        .append(doisPontos).append(pessoaClass.getDeclaredMethod("getIdade").invoke(pessoa)).append(virgula);
             }
 
             if (atributos[index].getName().equals("rg")) {
                 json.append(aspas).append(atributos[index].getName())
                         .append(aspas)
                         .append(doisPontos).append(aspas).
-                        append(Pessoa.class.getDeclaredMethod("getRg").invoke(pessoa)).append(virgula);
+                        append(pessoaClass.getDeclaredMethod("getRg").invoke(pessoa)).append(aspas);
             }
-
-
             json.append("\n");
         }
         json.append(chaveFechada);
