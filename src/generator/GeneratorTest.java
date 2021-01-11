@@ -1,6 +1,7 @@
 package generator;
 
 import model.Teste;
+import utils.CharUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
